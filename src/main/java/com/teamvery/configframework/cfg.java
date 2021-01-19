@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Conf {
+public class cfg {
 
     private static File file;
     public static FileConfiguration config;
