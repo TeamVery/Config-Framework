@@ -3,4 +3,4 @@ jdk:
 before_install:
   - chmod +x ./gradlew
 install:
-  - ./gradlew clean -Pgroup=$GROUP -Pversion=$VERSION -xtest build
+  - ./gradlew clean -Pgroup=$GROUP -Pversion=$VERSION -xtest install --warning-mode all
