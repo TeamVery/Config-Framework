@@ -6,6 +6,6 @@ public final class ConfigFramework extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("Enabled!");
+
     }
 }
