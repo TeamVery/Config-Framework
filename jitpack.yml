@@ -3,4 +3,4 @@ jdk:
 before_install:
   - chmod +x gradlew
 install:
-  - ./gradlew build -Pgroup=$GROUP -Pversion=$VERSION -xtest publishToMavenLocal
+  - ./gradlew build
