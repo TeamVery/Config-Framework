@@ -1,4 +1,5 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
     id 'java'
 }
 
@@ -37,6 +38,15 @@ tasks {
         filesMatching("**/*.yml") {
             expand(project.properties)
         }
+    }
+
+    jar {
+        finalizedBy shadowJar {
+            archiveBaseName.set("ConfigFramework")
+            archiveClassifier.set("")
+            archiveVersion.set("")
+        }
+        enabled(false)
     }
 }
 
