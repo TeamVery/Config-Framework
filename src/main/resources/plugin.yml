@@ -1,0 +1,6 @@
+name: $pluginName
+version: $pluginVersion
+main: $pluginMain
+api-version: 1.16
+authors: [ TeamVery ]
+website: https://github.com/TeamVery/Conf-framework
