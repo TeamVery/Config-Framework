@@ -1,6 +1,6 @@
 jdk:
   - openjdk11
 before_install:
-  - chmod +x ./gradlew
+  - chmod +x gradlew
 install:
-  - ./gradlew build
+  - ./gradlew build -Pgroup=$GROUP -Pversion=$VERSION -xtest publishToMavenLocal
