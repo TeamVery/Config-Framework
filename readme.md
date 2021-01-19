@@ -3,7 +3,7 @@
 ![Build](https://github.com/TeamVery/Config-Framework/workflows/Java%20CI%20with%20Gradle/badge.svg) [![](https://jitpack.io/v/TeamVery/Config-Framework.svg)](https://jitpack.io/#TeamVery/Config-Framework)
 ---
 ## 콘피그 관리 프레임워크
-> * 예제 플러그인 다운로드 : [다운로드](https://github.com/Kill00/config-framework-sample)
+> * 예제 플러그인 : [깃허브](https://github.com/Kill00/config-framework-sample)
 
 ---
 > * ## 기능
@@ -11,7 +11,7 @@
 >   * 콘피그 파일 비교 (String, Boolean 등...)
 >   * 콘피그 리로드
 >   * 콘피그 수정
->   * ~~콘피그 저장~~
+>   * ~~콘피그 저장~~ (버그 수정중)
 ---
 > * ## 적용법
 
@@ -65,6 +65,22 @@ public final class ConfigFrameworkSample extends JavaPlugin {
     }
 }
 ```
+또는
+```java
+public final class ConfigFrameworkSample extends JavaPlugin {
+    
+    public static String plugin_name = "Example-Plugin";
+    public static String conf = "config.yml";
+    
+    @Override
+    public void onEnable() {
+        getConfig().options().copyDefaults(true);
+        saveDefaultConfig();
+
+        cfg.makeData(plugin_name, conf);
+    }
+}
+```
 ---
 > ### Boolean 사용 예제
 
@@ -79,6 +95,23 @@ public final class ConfigFrameworkSample extends JavaPlugin {
     public void onEnable() {
 
         if (cfg.get("Example-Plugin", "config.yml").getBoolean("활성화")) { // True
+            getLogger().info("Config Framework Sample Plugin WORK!");
+        }
+    }
+}
+        
+```
+또는
+```java
+public final class ConfigFrameworkSample extends JavaPlugin {
+
+    public static String plugin_name = "Example-Plugin";
+    public static String conf = "config.yml";
+    
+    @Override
+    public void onEnable() {
+
+        if (cfg.get(plugin_name, conf).getBoolean("활성화")) { // True
             getLogger().info("Config Framework Sample Plugin WORK!");
         }
     }
