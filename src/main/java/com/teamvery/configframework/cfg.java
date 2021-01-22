@@ -46,7 +46,6 @@ public class cfg {
         return config;
     }
 
-    @Deprecated
     public static void save(String Plugin_Name, String yml) {
         file = new File(Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin(Plugin_Name)).getDataFolder(), yml);
 
