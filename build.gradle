@@ -1,6 +1,7 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '6.1.0'
     id 'java'
+    id 'maven'
 }
 
 group = properties["pluginGroup"]
@@ -42,11 +43,27 @@ tasks {
 
     jar {
         finalizedBy shadowJar {
-            archiveBaseName.set("ConfigFramework")
-            archiveClassifier.set("")
-            archiveVersion.set("")
+            gradle.taskGraph.whenReady {
+                if (gradle.taskGraph.hasTask(":install")) {
+                    archiveBaseName.set(null)
+                    archiveClassifier.set("")
+                    archiveVersion.set(null)
+                    from("LICENSE")
+                } else {
+                    archiveBaseName.set("ConfigFramework")
+                    archiveClassifier.set("")
+                    archiveVersion.set("")
+                    from("LICENSE")
+                }
+            }
         }
         enabled(false)
+    }
+
+    install {
+        artifacts {
+            archives jar
+        }
     }
 }
 
