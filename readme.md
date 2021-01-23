@@ -11,7 +11,7 @@
 >   * 콘피그 파일 비교 (String, Boolean 등...)
 >   * 콘피그 리로드
 >   * 콘피그 실시간 수정
->   * ~~콘피그 실시간 저장~~ (버그 수정중)
+>   * __***콘피그 실시간 저장***__ (임시 사용가능)
 ---
 > * ## 적용법
 
@@ -99,7 +99,6 @@ public final class ConfigFrameworkSample extends JavaPlugin {
         }
     }
 }
-        
 ```
 또는
 ```java
@@ -116,5 +115,49 @@ public final class ConfigFrameworkSample extends JavaPlugin {
         }
     }
 }
-        
+```
+---
+> ### 콘피그 실시간 수정기능 사용 예제
+config.yml 파일은 아래와 같이 작성되어있습니다.
+```yaml
+활성화: true
+```
+```java
+public final class ConfigFrameworkSample extends JavaPlugin {
+
+    public static String plugin_name = "Example-Plugin";
+    public static String conf = "config.yml";
+
+    @Override
+    public void onEnable() {
+
+        cfg.get(plugin_name, conf).set("활성화", false);
+    }
+}
+```
+※주의※ 해당 기능만 사용하면 서버가 종료되었을 때 콘피그가 이전으로 복구됩니다. 반드시 아래 `실시간 저장` 예제를 같이 이용해주세요.
+
+---
+> ### 콘피그 실시간 저장기능 사용 예제
+config.yml 파일은 아래와 같이 작성되어있습니다.
+```yaml
+활성화: true
+```
+```java
+public final class ConfigFrameworkSample extends JavaPlugin {
+
+    public static String plugin_name = "Example-Plugin";
+    public static String conf = "config.yml";
+
+    @Override
+    public void onEnable() {
+
+        cfg.get(plugin_name, conf).set("활성화", false);
+        cfg.save(plugin_name, conf);
+    }
+}
+```
+해당 예제 입력후 config.yml 내용
+```yaml
+활성화: false
 ```
