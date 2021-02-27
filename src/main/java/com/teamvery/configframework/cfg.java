@@ -46,10 +46,16 @@ public class cfg {
         return config;
     }
 
+    @Deprecated
+    public static FileConfiguration set(String Plugin_Name, String yml, String Path, Objects value) {
+        file = new File(Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin(Plugin_Name)).getDataFolder(), yml);
+        YamlConfiguration.loadConfiguration(file).set(Path, value);
+        return null;
+    }
+
     public static void save(String Plugin_Name, String yml) {
         file = new File(Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin(Plugin_Name)).getDataFolder(), yml);
 
-        config = YamlConfiguration.loadConfiguration(file);
 
         try {
             config.save(file);
